@@ -1,0 +1,27 @@
+#main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E3F2FD;
+}
+
+#logo img{
+    width: 12rem;
+}
+
+.nav-items{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item{
+    margin: auto 1rem;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+

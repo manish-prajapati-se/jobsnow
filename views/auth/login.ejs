@@ -1,17 +1,29 @@
-    <%-include('../shared/includes/head')%>
+<%-include('../shared/includes/head')%>
+<link rel="stylesheet" href="/styles/auth.css">
     <title>Login</title>
 </head>
 <body>
     <%- include('../shared/includes/header')%>
     <main>
-        <h1>Login</h1>
-        <form action="/login" method="POSt">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-        </form>
+        <div class="illustration">
+            <img src="images/login-illustration.png" alt="">
+        </div>
+        <div id="login-form" class="form-container">
+            <h1>Login</h1>
+            <p>Find the job made for you</p>
+            <form action="/login" method="POST">
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button class="btn">Login</button>
+            </form>
+        </div>
+        
     </main>
 </body>
 </html>

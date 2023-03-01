@@ -1,11 +1,36 @@
 <%-include('../shared/includes/head')%>
+<link rel="stylesheet" href="/styles/auth.css">
     <title>Sign Up</title>
 </head>
 <body>
     <%-include('../shared/includes/header')%>
     <main>
+        <div class="illustration">
+            <img src="images/signup-illustration.png" alt="">
+        </div>
+        <div id="signup-form" class="form-container">
+            <h1>Create an account</h1>
+            <form action="/signup" method="POST">
+                <div class="input-container">
+                    <label for="fullname">Full name</label>
+                    <input type="text" name="fullname" id="fullname" placeholder="enter text">
+                </div>
 
-        This is the signup page of JobsNow
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" placeholder="mail@test.com"> 
+                </div>
+
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="min 8 characters">   
+                </div>
+                <button class="btn">Sign Up</button>
+            </form>
+
+        </div>
+        
+            
     </main>
 </body>
 </html>
