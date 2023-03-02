@@ -7,6 +7,7 @@ const createSessionConfig=require('./config/session');
 const homeRoutes=require('./routes/home.routes');
 const authRoutes=require('./routes/auth.routes');
 const userRoutes=require('./routes/user.routes');
+const jobRoutes=require('./routes/job.routes');
 
 const checkAuthStatusMiddleware=require('./middlewares/check-auth');
 const errorHandlerMiddleware=require('./middlewares/error-handler');
@@ -24,10 +25,12 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 
 
-app.use(homeRoutes);
 app.use(authRoutes);
 
 app.use(checkAuthStatusMiddleware);
+
+app.use(jobRoutes);
+app.use(homeRoutes);
 app.use(userRoutes);
 
 app.use((req,res)=>{

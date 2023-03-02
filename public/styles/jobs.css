@@ -1,0 +1,47 @@
+main{
+    display: flex;
+    margin: 2rem 8rem;
+}
+
+#filters{
+    width: 25%;
+    padding: 1rem;
+    padding-left: 2rem;
+    background-color: #ffffff;
+    margin-right: 1rem;
+}
+
+#filters h2{
+    font-size: 1.1rem;
+    
+}
+
+#jobs{
+    width: 75%;
+    background-color: #ffffff;
+    margin-left: 1rem;
+    padding: 1rem 4rem 2rem 3rem;
+
+
+}
+
+.jobs{
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    background-color: #eff6fc;
+    margin-bottom: 2rem;
+}
+
+.job-details{
+    padding: 1.5rem;
+}
+
+.job-summary{
+    display: flex;
+    padding: 1rem 0;
+    background-color: #BBDEFB;
+    object-fit: fill;
+}
+
+.summary-item{
+    margin: 0 1rem;
+}
