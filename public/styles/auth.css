@@ -40,6 +40,13 @@ form{
     margin: 1rem auto;
 }
 
+.input-container #error{
+    margin: 0 auto;
+    font-size: 0.9rem;
+    color: #f2555f;
+}
+
+
 label{
     display: block;
     margin: auto;
@@ -70,6 +77,9 @@ button{
     width: 80%;
 }
 
+.input-error{
+    background-color: #f2555f41;
+}
 
 @media(max-width:768px){
     main{

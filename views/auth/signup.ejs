@@ -1,5 +1,6 @@
 <%-include('../shared/includes/head')%>
 <link rel="stylesheet" href="/styles/auth.css">
+<script src="/scripts/signup-validation.js" defer></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -13,17 +14,29 @@
             <form action="/signup" method="POST">
                 <div class="input-container">
                     <label for="fullname">Full name</label>
-                    <input type="text" name="fullname" id="fullname" placeholder="enter text">
+                    <input type="text" name="fullname" id="fullname" value="<%=inputData.name%>" placeholder="enter text" <%if(!inputData.errorStatus.isNameValid){%> class="input-error" <%}%> >
+                    <%if(!inputData.errorStatus.isNameValid){%>
+                            <p id="error">Enter a valid name</p>
+                    <%}%>
                 </div>
 
                 <div class="input-container">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" placeholder="mail@test.com"> 
+                    <input type="text" name="email" id="email" value="<%=inputData.email%>" placeholder="mail@test.com" <%if(!inputData.errorStatus.isEmailValid){%> class="input-error" <%}%> >
+                    <%if(!inputData.errorStatus.isEmailValid){%>
+                        <p id="error">Enter a valid email</p>
+                    <%}%>
+                    <%if(inputData.emailExists){%>
+                        <p id="error">Email already in use</p>
+                    <%}%>
                 </div>
 
                 <div class="input-container">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="min 8 characters">   
+                    <input type="password" name="password" id="password" value="<%=inputData.password%>" placeholder="min 8 characters" <%if(!inputData.errorStatus.isPasswordValid){%> class="input-error" <%}%> >  
+                    <%if(!inputData.errorStatus.isPasswordValid){%>
+                        <p id="error">Password must be atleast 8 characters long</p>
+                    <%}%>
                 </div>
                 <button class="btn">Sign Up</button>
             </form>
