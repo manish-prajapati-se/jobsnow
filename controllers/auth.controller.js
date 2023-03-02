@@ -3,9 +3,11 @@ const authUtils=require('../utils/authentication');
 const validationUtils=require('../utils/validation');
 
 function getSignup(req,res){
+    if(req.session.uid) return res.redirect('/');
+    
     let sessionInputData=req.session.inputData;
 
-    if(!sessionInputData){
+    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor==='login')){
         sessionInputData={
             hasError:false,
             errorStatus:{
@@ -25,6 +27,7 @@ function getSignup(req,res){
 }
 
 async function signup(req,res){
+
     const user={
         email: req.body.email,
         password:req.body.password,
@@ -38,6 +41,7 @@ async function signup(req,res){
     
     if(!isEmailValid || !isPasswordValid || !isNameValid){
         req.session.inputData={
+            usedFor:'signup',
             hasError:true,
             errorStatus:{
                 isEmailValid:isEmailValid,
@@ -62,6 +66,7 @@ async function signup(req,res){
 
     if(userExists){
         req.session.inputData={
+            usedFor:'signup',
             hasError:true,
             errorStatus:{
                 isEmailValid:isEmailValid,
@@ -88,8 +93,9 @@ async function signup(req,res){
 }
 
 function getLogin(req,res){
+    if(req.session.uid) return res.redirect('/');
     let sessionInputData=req.session.inputData;
-    if(!sessionInputData){
+    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor==='signup')){
         sessionInputData={
             hasError:false,
             errorStatus:{
@@ -109,6 +115,7 @@ async function login(req,res){
 
     if(!isEmailValid){
         req.session.inputData={
+            usedFor:'login',
             hasError:true,
             errorStatus:{
                 isEmailValid:false,
@@ -135,6 +142,7 @@ async function login(req,res){
     if(!existingUser){
         console.log('user does not exist');
         req.session.inputData={
+            usedFor:'login',
             hasError:true,
             errorStatus:{
                 isEmailValid:true,
@@ -156,6 +164,7 @@ async function login(req,res){
 
     if(!passwordIsCorrect){
         req.session.inputData={
+            usedFor:'login',
             hasError:true,
             errorStatus:{
                 isEmailValid:true,

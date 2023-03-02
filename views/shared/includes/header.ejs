@@ -1,14 +1,19 @@
 <header id="main-header">
-    <div id="logo"><img src="images/logo.png" alt="logo"></div>
+    <div id="logo"><a href="/"><img src="images/logo.png" alt="logo"></a></div>
     <nav>
         <ul class="nav-items">
+            <%if(!locals.uid){%>
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/signup">Signup</a></li>
+            <%}%>
+
+            <%if(locals.uid){%>
             <li class="nav-item">
                 <form action="/logout" method="POST">
                     <button>Logout</button>
                 </form>
             </li>
+            <%}%>
         </ul>
     </nav>
 </header>
