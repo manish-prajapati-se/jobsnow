@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+:root{
+    --container-box-shadow-1:2px 2px 5px rgba(0,0,0,0.2);
+    --container-box-shadow-2:2px 2px 4px rgba(0,0,0,0.3);
+    --container-border-radius-1: 3px;
+    --container-border-radius-2: 2px;
+}
+
 html{
     font-family: 'Open Sans',sans-serif;
     color: #333333;

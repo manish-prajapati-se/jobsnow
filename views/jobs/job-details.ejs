@@ -1,10 +1,51 @@
 <%-include('../shared/includes/head')%>
 <title>Jobs</title>
-<link rel="stylesheet" href="styles/jobs.css">
+<link rel="stylesheet" href="/styles/job-details.css">
 </head>
 <html>
 <%-include('../shared/includes/header')%>
 <main>
-    job details
+    <section id="job-details">
+        <div id="job-header">
+            <h1>Job Title</h1>
+            <div id="info">
+                <span>Compnay Name</span>
+                <span>Job Location</span>
+            </div>
+            <div id="apply">
+                <button class="btn">Apply</button>
+                <span>x candidates applied to this job.</span>
+            </div>
+
+        </div>
+        <div id="job-description">
+            <h2>Description</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore accusantium expedita facilis vel, recusandae autem reprehenderit quia veniam sequi, itaque beatae repellendus? Quibusdam cumque autem eveniet? Commodi explicabo consequatur facilis.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, doloribus praesentium. Ratione voluptatibus iste deserunt provident ipsum. Nemo illum magni illo ullam distinctio. Cumque, sapiente voluptatum ut saepe libero nulla?
+            </p>
+        </div>
+        <div id="job-summary">
+            <h2>Summary</h2>
+            <%-include('includes/summary-table')%>
+        </div>
+    </section>
+    <section id="more-details">
+        <h2>More Details</h2>
+            <div>
+                <h3>Email Address</h3>
+                <p>company@gmail.com</p>
+
+            </div>
+            <div>
+
+                <h3>Job Posted</h3>
+                <p>3 days ago</p>
+            </div>
+            <div>
+                
+                <h3>Last Date</h3>
+                <p>2022-03-05</p>
+            </div>
+    </section>
 </main>
 </html>

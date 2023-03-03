@@ -6,7 +6,11 @@ function getJobDetails(req,res){
     res.render('jobs/job-details');
 }
 
+function getPostJob(req,res){
+    res.render('jobs/post-job');
+}
 module.exports={
     getAllJobs:getAllJobs,
-    getJobDetails:getJobDetails
+    getJobDetails:getJobDetails,
+    getPostJob:getPostJob
 }
