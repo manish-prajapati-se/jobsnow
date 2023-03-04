@@ -1,6 +1,4 @@
 main{
-    display: flex;
-    justify-content: center;
     background-color: #ffffff;
     max-width: 60rem;
     margin: 5rem auto;
@@ -8,12 +6,44 @@ main{
     border-radius: var(--container-border-radius-1);
 }
 
+h2{
+    display: none;
+    margin: 0;
+    padding-top: 3rem;
+    text-align: center;
+
+}
+
 .form-container{
-    width: 45%;
     padding: 2rem;
     min-width: 25rem;
 }
 
+#section-1{
+    display: flex;
+}
+
+#form-section-1{
+    width: 40%;
+}
+
+.illustration{
+    width: 60%;
+    padding: 2rem;
+    max-height: 25rem;
+    text-align: center;
+}
+
+.illustration p{
+    margin-top: 0;
+    text-align: center;
+    font-size:1.5rem;
+    font-weight: 400;
+}
+
+.illustration img{
+    height: 100%;
+}
 
 .input-container{
     margin: 1rem auto;
@@ -34,6 +64,16 @@ label{
     font-weight:500;
 }
 
+#form-section-2 .input-container label{
+    width: 92%;
+}
+
+.form-section-2-select{
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+    margin: 2rem auto;
+}
 
 input,textarea{
     display: block;
@@ -46,35 +86,78 @@ input,textarea{
     border-radius: 3px;
 }
 
-input:focus{
+textarea{
+   resize: none;
+   width:92%;
+   margin-top:0.2rem
+}
+
+input:focus,textarea:focus{
     outline:none;
     border: 1px solid #1565C0;
     border-radius: 3px;
 }
 
-.illustration{
-    width: 50%;
-    padding: 2rem;
+.select-option-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-bottom: 1rem;
 }
 
-.illustration p{
-    text-align: center;
-    font-size:1.5rem;
-    font-weight: 400;
-}
-
-.illustration img{
-    width: 100%;
+.select-option-container label{
+    width: auto;
+    margin: 0;
+    margin-right: 0.5rem;
+    min-width: 6rem;
 }
 
 select{
     font: inherit;
     padding: 0.25rem;
-    /* border: 1px solid rgba(0,0,0,0.3); */
-    /* border-radius: 0; */
+    min-width: 15rem;
 }
+
 select:focus {
     outline: none;
-    /* border: none; */
-  }
-  
+    border: 1px solid #1565C0;
+}
+
+.button-container{
+    margin-top: 2rem;
+   text-align: center;
+}
+
+@media(max-width:800px){
+    main{
+        max-width: 35rem;
+    }
+
+    h2{
+        display: block;
+    }
+
+    #form-section-1{
+        width: 100%;
+    }
+
+    textarea{
+        width: 80%;
+    }
+
+    .form-section-2-select{
+        display: block;
+        margin: 2rem auto;
+        margin-left:10%;
+    }
+    
+    
+    #form-section-2 .input-container label {
+        width: 80%;
+    }
+
+    .illustration{
+        display: none;
+    }
+}

@@ -5,84 +5,104 @@
 <html>
 <%-include('../shared/includes/header')%>
 <main>
+    <h2>Let's make your next great hire</h2>
     <div class="form-container">
     <form action="">
-        <div class="input-container">
-            <label for="job-title">Job Title</label>
-            <input id="job-title" name="job-title" type="text">
+        <div id="section-1">
+            <div id="form-section-1">
+                <div class="input-container">
+                    <label for="job-title">Job Title</label>
+                    <input id="job-title" name="job-title" type="text">
+                </div>
+                <div>
+                    <label for="company-name">Company Name</label>
+                    <input type="text" id="company-name" name="company-name">
+                </div>
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="input-container">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                <div class="input-container">
+                    <label for="salary">Salary</label>
+                    <input type="number" id="salary" name="salary" min="1">
+                </div>
+                <div class="input-container">
+                    <label for="no-of-positions">Number of Positions</label>
+                    <input type="number" id="number-of-positions" name="number-of-positions" min="1">
+                </div>
+            </div>
+            <div class="illustration">
+                <p>Let's make your next great hire</p>
+                
+                <img src="/images/post-job.png" alt="post-job-illustration">
+            </div>          
         </div>
-        <div>
-            <label for="company-name">Company Name</label>
-            <input type="text" id="company-name" name="company-name">
-        </div>
-        <div class="input-container">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-        </div>
-        <div class="input-container">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address">
-        </div>
-        <div class="input-container">
-            <label for="salary">Salary</label>
-            <input type="number" id="salary" name="salary">
-        </div>
-        <div class="input-container">
-            <label for="no-of-positions">Number of Positions</label>
-            <input type="number" id="number-of-positions" name="number-of-positions">
-        </div>
-        <div class="input-container">
-            <label for="job-description">Job Description</label>
-            <textarea name="job-description" id="job-description" cols="30" rows="10"></textarea>
-        </div>
-        <div>
-            <div class="select-option-container">
-                <label for="job-type">Job Type</label>
-                <select name="job-type" id="job-type">
-                    <option value="permanent">Permanent</option>
-                    <option value="temporary">Temporary</option>
-                    <option value="internship">Internship</option>
-                </select>
+        <div id="form-section-2">
+            <div class="input-container">
+                <label for="job-description">Job Description</label>
+                <textarea name="job-description" id="job-description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-section-2-select">
+                <div>
+                <div class="select-option-container">
+                    <label for="job-type">Job Type</label>
+                    <select name="job-type" id="job-type">
+                        <option value="" selected disabled hidden>Select</option>
+                        <option value="permanent">Permanent</option>
+                        <option value="temporary">Temporary</option>
+                        <option value="internship">Internship</option>
+                    </select>
+                </div>
+    
+                <div class="select-option-container">
+                    <label for="education">Education</label>
+                    <select name="education" id="education">
+                        <option value="" selected disabled hidden>Select</option>
+                        <option value="bachelors">Bachelors</option>
+                        <option value="masters">Masters</option>
+                        <option value="phd">PhD</option>
+                    </select>
+                </div>
+                </div>
+                <div>
+                <div class="select-option-container">
+                    <label for="industry">Industry</label>
+                    <select name="industry" id="industry">
+                        <option value="" selected disabled hidden>Select</option>
+                        <option value="business">Business</option>
+                        <option value="information-technology">Information Technology</option>
+                        <option value="banking">Banking</option>
+                        <option value="education">Education</option>
+                        <option value="telecommunication">Telecommunication</option>
+                        <option value="others">Other</option>
+                    </select>
+                </div>
+    
+                <div class="select-option-container">
+                    <label for="experience">Experience</label>
+                    <select name="experience" id="experience">
+                        <option value="" selected disabled hidden>Select</option>
+                        <option value="no-experience">No experience</option>
+                        <option value="1year">1 year</option>
+                        <option value="2years">2 years</option>
+                        <option value="3years">3 years</option>
+                    </select>
+                </div>
+                </div>
             </div>
 
-            <div class="select-option-container">
-                <label for="education">Education</label>
-                <select name="education" id="education">
-                    <option value="bachelors">Bachelors</option>
-                    <option value="masters">Masters</option>
-                    <option value="phd">PhD</option>
-                </select>
-            </div>
-
-            <div class="select-option-container">
-                <label for="industry">Industry</label>
-                <select name="industry" id="industry">
-                    <option value="business">Business</option>
-                    <option value="information-technology">Information Technology</option>
-                    <option value="banking">Banking</option>
-                    <option value="education">Education</option>
-                    <option value="telecommunication">Telecommunication</option>
-                    <option value="others">Other</option>
-                </select>
-            </div>
-
-            <div class="select-option-container">
-                <label for="experience">Experience</label>
-                <select name="experience" id="experience">
-                    <option value="no-experience">No experience</option>
-                    <option value="1year">1 year</option>
-                    <option value="2years">2 years</option>
-                    <option value="3years">3 years</option>
-                </select>
-            </div>
         </div>
-        <button class="btn">Post Job</button>
+        
+        <div class="button-container">
+
+            <button class="btn">Post Job</button>
+        </div>
     </form>
             
     </div>
-    <div class="illustration">
-        <p>Let's make your next great hire</p>
-        
-        <img src="/images/post-job.png" alt="post-job-illustration">
-    </div>
+    
 </main>
