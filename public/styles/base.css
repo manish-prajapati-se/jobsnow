@@ -19,6 +19,10 @@ body{
     margin:0;
 }
 
+.input-error{
+    background-color: #f2555f41;
+}
+
 .btn{
     font:inherit;
     cursor:pointer;

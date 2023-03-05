@@ -1,38 +1,57 @@
 <%-include('../shared/includes/head')%>
 <title>Jobs</title>
 <link rel="stylesheet" href="/styles/post-job.css">
+<script src="/scripts/post-job-validation.js" defer></script>
 </head>
 <html>
 <%-include('../shared/includes/header')%>
 <main>
     <h2>Let's make your next great hire</h2>
     <div class="form-container">
-    <form action="">
+    <form action="/post-job" method="POST">
         <div id="section-1">
             <div id="form-section-1">
                 <div class="input-container">
                     <label for="job-title">Job Title</label>
-                    <input id="job-title" name="job-title" type="text">
+                    <input id="job-title" name="job-title" type="text" value="<%=inputData.jobTitle%>" <%if(inputData.errorStatus && inputData.errorStatus.jobTitle){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.jobTitle){%>
+                        <p class="error"><%=inputData.errorStatus.jobTitle%></p>
+                    <%}%>
                 </div>
-                <div>
+                <div class="input-container">
                     <label for="company-name">Company Name</label>
-                    <input type="text" id="company-name" name="company-name">
+                    <input type="text" id="company-name" name="company-name" value="<%=inputData.companyName%>" <%if(inputData.errorStatus && inputData.errorStatus.companyName){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.companyName){%>
+                        <p class="error"><%=inputData.errorStatus.companyName%></p>
+                    <%}%>
                 </div>
                 <div class="input-container">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
+                    <input type="text" id="email" name="email" value="<%=inputData.email%>" <%if(inputData.errorStatus && inputData.errorStatus.email){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.email){%>
+                        <p class="error"><%=inputData.errorStatus.email%></p>
+                    <%}%>
                 </div>
                 <div class="input-container">
                     <label for="address">Address</label>
-                    <input type="text" id="address" name="address">
+                    <input type="text" id="address" name="address" value="<%=inputData.address%>" <%if(inputData.errorStatus && inputData.errorStatus.address){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.address){%>
+                        <p class="error"><%=inputData.errorStatus.address%></p>
+                    <%}%>
                 </div>
                 <div class="input-container">
                     <label for="salary">Salary</label>
-                    <input type="number" id="salary" name="salary" min="1">
+                    <input type="number" id="salary" name="salary" min="1" value="<%=inputData.salary%>" <%if(inputData.errorStatus && inputData.errorStatus.salary){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.salary){%>
+                        <p class="error"><%=inputData.errorStatus.salary%></p>
+                    <%}%>
                 </div>
                 <div class="input-container">
-                    <label for="no-of-positions">Number of Positions</label>
-                    <input type="number" id="number-of-positions" name="number-of-positions" min="1">
+                    <label for="number-of-positions">Number of Positions</label>
+                    <input type="number" id="number-of-positions" name="number-of-positions" min="1" value="<%=inputData.positions%>" <%if(inputData.errorStatus && inputData.errorStatus.positions){%> class="input-error" <%}%>>
+                    <%if(inputData.errorStatus && inputData.errorStatus.positions){%>
+                        <p class="error"><%=inputData.errorStatus.positions%></p>
+                    <%}%>
                 </div>
             </div>
             <div class="illustration">
@@ -44,54 +63,81 @@
         <div id="form-section-2">
             <div class="input-container">
                 <label for="job-description">Job Description</label>
-                <textarea name="job-description" id="job-description" cols="30" rows="10"></textarea>
+                <textarea name="job-description" id="job-description" cols="30" rows="10" <%if(inputData.errorStatus && inputData.errorStatus.jobDescription){%> class="input-error" <%}%>><%=inputData.jobDescription%></textarea>
+                <%if(inputData.errorStatus && inputData.errorStatus.jobDescription){%>
+                    <p class="error"><%=inputData.errorStatus.jobDescription%></p>
+                <%}%>
             </div>
             <div class="form-section-2-select">
                 <div>
                 <div class="select-option-container">
                     <label for="job-type">Job Type</label>
-                    <select name="job-type" id="job-type">
-                        <option value="" selected disabled hidden>Select</option>
-                        <option value="permanent">Permanent</option>
-                        <option value="temporary">Temporary</option>
-                        <option value="internship">Internship</option>
-                    </select>
+                    <div>
+                        <select name="job-type" id="job-type" <%if(inputData.errorStatus && inputData.errorStatus.jobType){%> class="input-error" <%}%>>
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="permanent" <%if(inputData.jobType==='Permanent'){ %>selected<% }%>>Permanent</option>
+                            <option value="temporary" <%if(inputData.jobType==='Temporary'){ %>selected<% }%>>Temporary</option>
+                            <option value="internship" <%if(inputData.jobType==='Internship'){ %>selected<% }%>>Internship</option>
+                        </select>
+                        <%if(inputData.errorStatus && inputData.errorStatus.jobType){%>
+                            <p class="error"><%=inputData.errorStatus.jobType%></p>
+                        <%}%>
+                    </div>
                 </div>
+
     
                 <div class="select-option-container">
                     <label for="education">Education</label>
-                    <select name="education" id="education">
-                        <option value="" selected disabled hidden>Select</option>
-                        <option value="bachelors">Bachelors</option>
-                        <option value="masters">Masters</option>
-                        <option value="phd">PhD</option>
-                    </select>
+                    <div>
+                        <select name="education" id="education" <%if(inputData.errorStatus && inputData.errorStatus.minEducation){%> class="input-error" <%}%>>
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="bachelors" <%if(inputData.minEducation==='Bachelors'){ %>selected<% }%>>Bachelors</option>
+                            <option value="masters" <%if(inputData.minEducation==='Masters'){ %>selected<% }%>>Masters</option>
+                            <option value="phd" <%if(inputData.minEducation==='PhD'){ %>selected<% }%>>PhD</option>
+                        </select>
+                        <%if(inputData.errorStatus && inputData.errorStatus.minEducation){%>
+                            <p class="error"><%=inputData.errorStatus.minEducation%></p>
+                        <%}%>
+                    </div>
                 </div>
+
                 </div>
                 <div>
                 <div class="select-option-container">
                     <label for="industry">Industry</label>
-                    <select name="industry" id="industry">
-                        <option value="" selected disabled hidden>Select</option>
-                        <option value="business">Business</option>
-                        <option value="information-technology">Information Technology</option>
-                        <option value="banking">Banking</option>
-                        <option value="education">Education</option>
-                        <option value="telecommunication">Telecommunication</option>
-                        <option value="others">Other</option>
-                    </select>
+                    <div>
+                        <select name="industry" id="industry" <%if(inputData.errorStatus && inputData.errorStatus.industry){%> class="input-error" <%}%>>
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="business" <%if(inputData.industry==='Business'){ %>selected<% }%>>Business</option>
+                            <option value="information-technology" <%if(inputData.industry==='Information Technology'){ %>selected<% }%>>Information Technology</option>
+                            <option value="banking" <%if(inputData.industry==='Banking'){ %>selected<% }%>>Banking</option>
+                            <option value="education" <%if(inputData.industry==='Education'){ %>selected<% }%>>Education</option>
+                            <option value="telecommunication" <%if(inputData.industry==='Telecommunication'){ %>selected<% }%>>Telecommunication</option>
+                            <option value="other" <%if(inputData.industry==='Other'){ %>selected<% }%>>Other</option>
+                        </select>
+                        <%if(inputData.errorStatus && inputData.errorStatus.industry){%>
+                            <p class="error"><%=inputData.errorStatus.industry%></p>
+                        <%}%>
+                    </div>
                 </div>
     
                 <div class="select-option-container">
                     <label for="experience">Experience</label>
-                    <select name="experience" id="experience">
-                        <option value="" selected disabled hidden>Select</option>
-                        <option value="no-experience">No experience</option>
-                        <option value="1year">1 year</option>
-                        <option value="2years">2 years</option>
-                        <option value="3years">3 years</option>
-                    </select>
+                    <div>
+
+                        <select name="experience" id="experience" <%if(inputData.errorStatus && inputData.errorStatus.experience){%> class="input-error" <%}%>>
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="no-experience" <%if(inputData.experience==='No experience'){ %>selected<% }%>>No experience</option>
+                            <option value="1-2-years" <%if(inputData.experience==='1-2 years'){ %>selected<% }%>>1-2 years</option>
+                            <option value="2-5-years" <%if(inputData.experience==='2-5 years'){ %>selected<% }%>>2-5 years</option>
+                            <option value="5+years" <%if(inputData.experience==='More than 5 years'){ %>selected<% }%>>More than 5 years</option>
+                        </select>
+                        <%if(inputData.errorStatus && inputData.errorStatus.experience){%>
+                            <p class="error" ><%=inputData.errorStatus.experience%></p>
+                        <%}%>
+                    </div>
                 </div>
+
                 </div>
             </div>
 

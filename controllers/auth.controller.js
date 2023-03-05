@@ -7,7 +7,7 @@ function getSignup(req,res){
     
     let sessionInputData=req.session.inputData;
 
-    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor==='login')){
+    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor!=='signup')){
         sessionInputData={
             hasError:false,
             errorStatus:{
@@ -95,7 +95,7 @@ async function signup(req,res){
 function getLogin(req,res){
     if(req.session.uid) return res.redirect('/');
     let sessionInputData=req.session.inputData;
-    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor==='signup')){
+    if(!sessionInputData||(sessionInputData && sessionInputData.usedFor!=='login')){
         sessionInputData={
             hasError:false,
             errorStatus:{

@@ -30,7 +30,7 @@ h2{
 .illustration{
     width: 60%;
     padding: 2rem;
-    max-height: 25rem;
+    max-height: 30rem;
     text-align: center;
 }
 
@@ -42,15 +42,17 @@ h2{
 }
 
 .illustration img{
-    height: 100%;
+    width: 100%;
 }
 
 .input-container{
-    margin: 1rem auto;
+    margin: 0.5rem auto;
+    min-height: 4.8rem;
 }
 
-.input-container #error{
+.input-container .error{
     margin: 0 auto;
+    width: 80%;
     font-size: 0.9rem;
     color: #f2555f;
 }
@@ -68,12 +70,24 @@ label{
     width: 92%;
 }
 
+#form-section-2 .input-container .error{
+    width: 92%;
+}
+
 .form-section-2-select{
     display: flex;
     justify-content: space-between;
     width: 92%;
     margin: 2rem auto;
 }
+
+.form-section-2-select .error{
+    margin: 0 auto;
+    margin-top:0.3rem;
+    font-size: 0.9rem;
+    color: #f2555f;
+}
+
 
 input,textarea{
     display: block;
@@ -87,9 +101,11 @@ input,textarea{
 }
 
 textarea{
+    font: inherit;
    resize: none;
    width:92%;
-   margin-top:0.2rem
+   margin-top:0.2rem;
+   white-space: pre-wrap;
 }
 
 input:focus,textarea:focus{
@@ -101,14 +117,16 @@ input:focus,textarea:focus{
 .select-option-container{
     display: flex;
     justify-content: flex-start;
-    align-items: center;
 
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    min-height: 3.5rem;
 }
+
 
 .select-option-container label{
     width: auto;
     margin: 0;
+    margin-top: 0.3rem;
     margin-right: 0.5rem;
     min-width: 6rem;
 }
@@ -128,6 +146,7 @@ select:focus {
     margin-top: 2rem;
    text-align: center;
 }
+
 
 @media(max-width:800px){
     main{
@@ -157,7 +176,12 @@ select:focus {
         width: 80%;
     }
 
+    #form-section-2 .input-container .error{
+        width: 80%;
+    }
+
     .illustration{
         display: none;
     }
 }
+
