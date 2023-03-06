@@ -39,7 +39,7 @@ const jobSchema=new mongoose.Schema({
     jobDescription:{
         type: String,
         required:[true,'Please add a job description'],
-        maxlength:[1000,'Job description cannot exceed 1000 characters']
+        maxlength:[2000,'Job description cannot exceed 2000 characters']
     },
     jobType:{
         type:String,
@@ -97,10 +97,10 @@ const jobSchema=new mongoose.Schema({
         type:[Object],
         select:false
     },
-    // user:{
-    //     type:mongoose.Schema.ObjectId,
-    //     required: true
-    // },
+    author:{
+        type:mongoose.Schema.ObjectId,
+        required: true
+    },
     postingDate:{
         type:Date,
         default: Date.now
@@ -134,7 +134,12 @@ jobSchema.statics.fetchAllJobs=async function(){
 
 jobSchema.statics.fetchJobById=async function(jobId){
     const mongoJobId=new ObjectId(jobId);
-    let job=await this.findOne({_id:mongoJobId}).select('+applicants');
+    let job;
+    try{
+        job=await this.findOne({_id:mongoJobId}).select('+applicants');
+    }catch(err){
+        console.log(err);
+    }
     const date=moment(job.postingDate);
     const timeFromNow=date.fromNow();
     

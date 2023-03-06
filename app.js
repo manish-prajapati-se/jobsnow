@@ -8,9 +8,11 @@ const homeRoutes=require('./routes/home.routes');
 const authRoutes=require('./routes/auth.routes');
 const userRoutes=require('./routes/user.routes');
 const jobRoutes=require('./routes/job.routes');
+const employerRoutes=require('./routes/employer.routes');
 
 const checkAuthStatusMiddleware=require('./middlewares/check-auth');
 const errorHandlerMiddleware=require('./middlewares/error-handler');
+const protectRoutesMiddleware=require('./middlewares/protect-routes');
 
 const sessionConfig=createSessionConfig();
 
@@ -30,6 +32,9 @@ app.use(authRoutes);
 app.use(checkAuthStatusMiddleware);
 
 app.use(jobRoutes);
+app.use('/employer',protectRoutesMiddleware.employer,employerRoutes);
+
+
 app.use(homeRoutes);
 app.use(userRoutes);
 

@@ -1,0 +1,113 @@
+main{
+    padding:2rem;
+    background-color: #ffffff;
+    max-width: 60rem;
+    margin: 5rem auto;
+    box-shadow: var(--container-box-shadow-1);
+    border-radius: var(--container-border-radius-1);
+}
+
+h2{
+    margin: 1rem 4rem;
+    text-align: center;
+}
+
+
+
+#listings{
+    margin: 2rem 4rem;
+}
+
+#listings .header{
+    font-weight: 500;
+}
+
+.header td{
+    background-color: #f8f9fa;
+}
+
+td{
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
+
+.job-number{
+    min-width: 4rem;
+    
+}
+
+.job-title{
+    min-width: 16rem;
+   
+}
+
+.salary{
+    min-width: 8rem;
+}
+
+.job-actions{
+    min-width: 20rem;
+    text-align: center;
+    
+}
+
+tr{
+    background-color: #f8f9fa;
+}
+
+tr:nth-of-type(odd){
+    background-color: #eff6fc;
+}
+
+
+#actions{
+    display: flex;
+    justify-content: center;
+    color:white;
+}
+
+#actions div{
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin: 0.2rem;
+}
+
+
+
+
+#actions i{
+    padding: 0.5rem;
+}
+
+
+#view{
+    background-color: #0582ca;
+    
+}
+
+#view:hover{
+    background-color: #0466c8;
+}
+#applicants{
+    background-color: #38b000;
+}
+
+#applicants:hover{
+    background-color: #008000;
+}
+
+#edit{
+    background-color: #FFBA08;
+}
+
+#edit:hover{
+    background-color: #FAA307;
+}
+
+#delete{
+    background-color: #DC2F02;
+}
+
+#delete:hover{
+    background-color: #D00000;
+}
