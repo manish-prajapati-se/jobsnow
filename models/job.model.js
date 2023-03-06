@@ -1,7 +1,9 @@
 const mongoose=require('mongoose');
 const validator=require('validator');
-
-
+const db=require('../data/database');
+const moment=require('moment');
+const sliceText=require('../utils/stringUtils');
+const { ObjectId } = require('mongodb');
 
 const jobSchema=new mongoose.Schema({
     jobTitle: {
@@ -91,24 +93,66 @@ const jobSchema=new mongoose.Schema({
             message:'Please select correct option for experience'
         }
     },
-    // applicants:{
-    //     type:[Object],
-    //     select:false
-    // },
+    applicants:{
+        type:[Object],
+        select:false
+    },
     // user:{
     //     type:mongoose.Schema.ObjectId,
     //     required: true
     // },
-    // postingDate:{
-    //     type:Date,
-    //     default: Date.now
-    // },
-    // lastDate:{
-    //     type:Date,
-    //     default: new Date().setDate(new Date().getDate()+7)
-    // }
+    postingDate:{
+        type:Date,
+        default: Date.now
+    },
+    lastDate:{
+        type:Date,
+        default: new Date().setDate(new Date().getDate()+7)
+    }
 
 })
+
+jobSchema.statics.fetchAllJobs=async function(){
+    // const jobs=await db.getDb().collection('jobs').find().toArray();
+    const jobs=await this.find();
+ 
+    for(let i=0;i<jobs.length;i++){
+        const date=moment(jobs[i].postingDate);
+        const timeFromNow=date.fromNow();
+        console.log(timeFromNow);
+
+
+
+        jobs[i]={...jobs[i].toObject(),
+            timeFromNow:timeFromNow,
+            jobDescription:sliceText(jobs[i].jobDescription)
+        }
+    }
+
+    return jobs;
+}
+
+jobSchema.statics.fetchJobById=async function(jobId){
+    const mongoJobId=new ObjectId(jobId);
+    let job=await this.findOne({_id:mongoJobId}).select('+applicants');
+    const date=moment(job.postingDate);
+    const timeFromNow=date.fromNow();
+    
+    const lastDate=job.lastDate;
+    const localizedLastDate=lastDate.toLocaleString('en-US',{
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric'
+    });
+
+    job={...job.toObject(),
+        timeFromNow:timeFromNow,
+        localizedLastDate:localizedLastDate,
+        numberOfApplicants:job.applicants.length
+    }
+
+    return job;
+}
 
 const Job=mongoose.model('jobs',jobSchema);
 

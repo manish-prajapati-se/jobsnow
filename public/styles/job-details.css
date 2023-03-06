@@ -33,9 +33,18 @@ main{
     align-items: center;
 }
 
+#job-header span{
+    margin-right: 1rem;
+}
+
 #apply{
     margin-top: 1rem;
 }
+
+#apply span{
+    margin-left: 1rem;
+}
+
 
 .summary-table{
     width: 50%;

@@ -5,12 +5,17 @@ const industryMap=require('../data/mappings/industry.json');
 const jobTypeMap=require('../data/mappings/jobType.json');
 
 
-function getAllJobs(req,res){
-    res.render('jobs/all-jobs');
+async function getAllJobs(req,res){
+    const jobs=await Job.fetchAllJobs();
+    console.log(jobs);
+    res.render('jobs/all-jobs',{jobs:jobs});
 }
 
-function getJobDetails(req,res){
-    res.render('jobs/job-details');
+async function getJobDetails(req,res){
+    const jobId=req.params.id;
+    const job=await Job.fetchJobById(jobId);
+    console.log(job);
+    res.render('jobs/job-details',{job:job});
 }
 
 function getPostJob(req,res){

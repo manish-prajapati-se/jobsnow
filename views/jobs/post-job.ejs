@@ -1,6 +1,7 @@
 <%-include('../shared/includes/head')%>
 <title>Jobs</title>
 <link rel="stylesheet" href="/styles/post-job.css">
+
 <script src="/scripts/post-job-validation.js" defer></script>
 </head>
 <html>
@@ -13,42 +14,42 @@
             <div id="form-section-1">
                 <div class="input-container">
                     <label for="job-title">Job Title</label>
-                    <input id="job-title" name="job-title" type="text" value="<%=inputData.jobTitle%>" <%if(inputData.errorStatus && inputData.errorStatus.jobTitle){%> class="input-error" <%}%>>
+                    <input id="job-title" name="job-title" type="text" placeholder="e.g. Data Scientist" value="<%=inputData.jobTitle%>" <%if(inputData.errorStatus && inputData.errorStatus.jobTitle){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.jobTitle){%>
                         <p class="error"><%=inputData.errorStatus.jobTitle%></p>
                     <%}%>
                 </div>
                 <div class="input-container">
                     <label for="company-name">Company Name</label>
-                    <input type="text" id="company-name" name="company-name" value="<%=inputData.companyName%>" <%if(inputData.errorStatus && inputData.errorStatus.companyName){%> class="input-error" <%}%>>
+                    <input type="text" id="company-name" name="company-name" placeholder="name of your company" value="<%=inputData.companyName%>" <%if(inputData.errorStatus && inputData.errorStatus.companyName){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.companyName){%>
                         <p class="error"><%=inputData.errorStatus.companyName%></p>
                     <%}%>
                 </div>
                 <div class="input-container">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" value="<%=inputData.email%>" <%if(inputData.errorStatus && inputData.errorStatus.email){%> class="input-error" <%}%>>
+                    <input type="text" id="email" name="email" placeholder="mail@test.com" value="<%=inputData.email%>" <%if(inputData.errorStatus && inputData.errorStatus.email){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.email){%>
                         <p class="error"><%=inputData.errorStatus.email%></p>
                     <%}%>
                 </div>
                 <div class="input-container">
                     <label for="address">Address</label>
-                    <input type="text" id="address" name="address" value="<%=inputData.address%>" <%if(inputData.errorStatus && inputData.errorStatus.address){%> class="input-error" <%}%>>
+                    <input type="text" id="address" name="address" placeholder="job location" value="<%=inputData.address%>" <%if(inputData.errorStatus && inputData.errorStatus.address){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.address){%>
                         <p class="error"><%=inputData.errorStatus.address%></p>
                     <%}%>
                 </div>
                 <div class="input-container">
                     <label for="salary">Salary</label>
-                    <input type="number" id="salary" name="salary" min="1" value="<%=inputData.salary%>" <%if(inputData.errorStatus && inputData.errorStatus.salary){%> class="input-error" <%}%>>
+                    <input type="number" id="salary" name="salary" placeholder="salary in US dollars" min="1" value="<%=inputData.salary%>" <%if(inputData.errorStatus && inputData.errorStatus.salary){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.salary){%>
                         <p class="error"><%=inputData.errorStatus.salary%></p>
                     <%}%>
                 </div>
                 <div class="input-container">
                     <label for="number-of-positions">Number of Positions</label>
-                    <input type="number" id="number-of-positions" name="number-of-positions" min="1" value="<%=inputData.positions%>" <%if(inputData.errorStatus && inputData.errorStatus.positions){%> class="input-error" <%}%>>
+                    <input type="number" id="number-of-positions" name="number-of-positions" placeholder="number of open positions" min="1" value="<%=inputData.positions%>" <%if(inputData.errorStatus && inputData.errorStatus.positions){%> class="input-error" <%}%>>
                     <%if(inputData.errorStatus && inputData.errorStatus.positions){%>
                         <p class="error"><%=inputData.errorStatus.positions%></p>
                     <%}%>
@@ -63,7 +64,8 @@
         <div id="form-section-2">
             <div class="input-container">
                 <label for="job-description">Job Description</label>
-                <textarea name="job-description" id="job-description" cols="30" rows="10" <%if(inputData.errorStatus && inputData.errorStatus.jobDescription){%> class="input-error" <%}%>><%=inputData.jobDescription%></textarea>
+                <textarea name="job-description" id="job-description" cols="30" rows="10" placeholder="summarize the essential responsibilities, activities, qualifications and skills for the role"
+                <%if(inputData.errorStatus && inputData.errorStatus.jobDescription){%> class="input-error" <%}%>><%=inputData.jobDescription%></textarea>
                 <%if(inputData.errorStatus && inputData.errorStatus.jobDescription){%>
                     <p class="error"><%=inputData.errorStatus.jobDescription%></p>
                 <%}%>

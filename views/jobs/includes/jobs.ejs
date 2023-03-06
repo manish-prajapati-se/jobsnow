@@ -1,18 +1,20 @@
 <section id="jobs">
     <h1>Latest Jobs</h1>
-    <%for(let i=0;i<3;i++){%>
+    <%for(const job of jobs){%>
+    <a href="/jobs/<%=job._id.toString()%>">
     <article class="jobs">
         <div class="job-details">
-            <h3>Company Name</h3>
-            <h2>Job Title</h2>
-            <p>JobDesciption- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, obcaecati officiis. Quia possimus nostrum ab amet ratione voluptate facere tenetur odio earum, iusto dolore commodi. Quis iusto doloribus modi non.</p>
+            <h3><%=job.companyName%></h3>
+            <h2><%=job.jobTitle%></h2>
+            <p><%=job.jobDescription%></p>
         </div>
         <div class="job-summary">
-            <div class="summary-item">Industry</div>
-            <div class="summary-item">Job Type</div>
-            <div class="summary-item">Salary</div>
-            <div class="summary-item">Date Posted</div>
+            <div class="summary-item"><i class="fa-solid fa-industry"></i> <%=job.industry%></div>
+            <div class="summary-item"><i class="fa-sharp fa-solid fa-briefcase"></i> <%=job.jobType%></div>
+            <div class="summary-item"><i class="fa-sharp fa-solid fa-money-check-dollar"></i> $<%=job.salary%></div>
+            <div class="summary-item"><i class="fa-solid fa-clock"></i> <%=job.timeFromNow%></div>
         </div>
     </article>
+    </a>
     <%}%>
 </section>

@@ -24,7 +24,7 @@ class User{
     
     async userExists(){
         const existingUser=await this.getUserWithSameEmail();
-        console.log(existingUser);
+        // console.log(existingUser);
         if(!existingUser){
             return false;
         }
