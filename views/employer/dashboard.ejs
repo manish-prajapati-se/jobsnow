@@ -1,11 +1,15 @@
 <%-include('../shared/includes/head')%>
 <link rel="stylesheet" href="/styles/employer/dashboard.css">
+<script src="/scripts/dashboard.js" defer></script>
 <script src="https://kit.fontawesome.com/0ef15d1b1c.js" crossorigin="anonymous"></script>
 <body>
     <%-include('../shared/includes/header')%>
     <main>
         <h2>My Jobs</h2>
         <section id="listings">
+            <%if(!listings || listings.length===0){%>
+                <p>Seems like you haven't posted any job.</p>
+            <%}else{%>
             <article class="header">
                 <table>
                     <tr>
@@ -17,71 +21,36 @@
                 </table>
             </article>
             <table class="job-listings">
-                <tr>
-                    <td class="job-number">1</td>
-                    <td class="job-title">Software Engineer</td>
-                    <td class="salary">70000</td>
-                    <td class="job-actions">
-                        <div id="actions">
-                            <div id="view">
-                                <i class="fa-solid fa-eye fa-lg"></i>
+                <%for(const listing of listings){%>
+                    <tr>
+                        <td class="job-number"><%=listing.jobNumber%></td>
+                        <td class="job-title"><%=listing.jobTitle%></td>
+                        <td class="salary"><%=listing.salary%></td>
+                        <td class="job-actions">
+                            <div id="actions">
+                                <a href="/jobs/<%=listing.jobId%>">
+                                    <div id="view">
+                                        <i class="fa-solid fa-eye fa-lg"></i>
+                                    </div>
+                                </a>
+                                <div id="applicants">
+                                    <i class="fa-solid fa-users fa-lg"></i>
+                                </div>
+                                <div id="edit">
+                                    <i class="fa-solid fa-pencil fa-lg"></i>
+                                </div>
+                                <form id="delete-job" action="/employer/delete-job/<%=listing.jobId%>" method="POST">
+                                    <div id="delete">
+                                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                                    </div>
+                                </form>
                             </div>
-                            <div id="applicants">
-                                <i class="fa-solid fa-users fa-lg"></i>
-                            </div>
-                            <div id="edit">
-                                <i class="fa-solid fa-pencil fa-lg"></i>
-                            </div>
-                            <div id="delete">
-                                <i class="fa-solid fa-trash-can fa-lg"></i>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Data Scientist</td>
-                    <td>220000</td>
-                    <td>
-                        <div id="actions">
-                            <div id="view">
-                                <i class="fa-solid fa-eye fa-lg"></i>
-                            </div>
-                            <div id="applicants">
-                                <i class="fa-solid fa-users fa-lg"></i>
-                            </div>
-                            <div id="edit">
-                                <i class="fa-solid fa-pencil fa-lg"></i>
-                            </div>
-                            <div id="delete">
-                                <i class="fa-solid fa-trash-can fa-lg"></i>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Senior Data Scientist</td>
-                    <td>250000</td>
-                    <td>
-                        <div id="actions">
-                            <div id="view">
-                                <i class="fa-solid fa-eye fa-lg"></i>
-                            </div>
-                            <div id="applicants">
-                                <i class="fa-solid fa-users fa-lg"></i>
-                            </div>
-                            <div id="edit">
-                                <i class="fa-solid fa-pencil fa-lg"></i>
-                            </div>
-                            <div id="delete">
-                                <i class="fa-solid fa-trash-can fa-lg"></i>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                <%}%>
+                
             </table>
-
+            <%}%>
         </section>
     </main>
 </body>

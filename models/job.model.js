@@ -119,7 +119,7 @@ jobSchema.statics.fetchAllJobs=async function(){
     for(let i=0;i<jobs.length;i++){
         const date=moment(jobs[i].postingDate);
         const timeFromNow=date.fromNow();
-        console.log(timeFromNow);
+        // console.log(timeFromNow);
 
 
 

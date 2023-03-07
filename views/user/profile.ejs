@@ -1,8 +1,64 @@
 <%-include('../shared/includes/head')%>
+<script src="https://kit.fontawesome.com/0ef15d1b1c.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/styles/user/profile.css">
+
     <title>Profile</title>
 </head>
 <body>
     <%- include('../shared/includes/header')%>
-    <p>This is your profile</p>
+    <main>
+        <section id="illustration">
+            <img src="/images/profile.png" alt="profile-illustration">
+        </section>
+        <section id="information">
+            <h2>Profile</h2>
+            <div id="progress-container">
+                <div id="progress-bar">
+                    <%if(!user.resume){%>
+                        <div id="progress" class="progress-67">
+                        
+                        </div>
+                    <%}else{%>
+                        <div  id="progress" class="progress-100">
+                        
+                        </div>
+                    <%}%>
+                    
+                </div>
+                <div id="progress-percent">
+                    <%if(user.resume){%>
+                        100%
+                    <%}%>
+                </div>
+
+            </div>
+            <form action="/profile/<%=locals.uid%>" method="post" enctype="multipart/form-data">
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value="<%=user.email%>" disabled>
+                </div>
+                <div class="input-container">
+                    <label for="fullname">Full name</label>
+                    <input type="text" name="fullname" id="fullname" value="<%=user.name%>" required>
+                </div>
+                <div class="input-container">
+                    <label for="resume">Resume</label>
+                    <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx">
+                    <%if(user.resume){%>
+                    <div id="view-resume">
+                        <p>
+                            <a class="resume" href="/assets/resume/<%=user.resume%>" target="_blank">
+                                <i class="fa-solid fa-download"></i> View available resume
+                            </a>
+                        </p>
+                    </div>
+                    <%}%>
+                </div>
+                <div class="button-container">
+                    <button class="btn">Update profile</button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

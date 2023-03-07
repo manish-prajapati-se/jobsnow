@@ -22,6 +22,11 @@ h2{
     font-weight: 500;
 }
 
+#listings p{
+    text-align: center;
+    padding:2rem;
+}
+
 .header td{
     background-color: #f8f9fa;
 }
@@ -77,6 +82,7 @@ tr:nth-of-type(odd){
 
 #actions i{
     padding: 0.5rem;
+    color:white;
 }
 
 
@@ -110,4 +116,5 @@ tr:nth-of-type(odd){
 
 #delete:hover{
     background-color: #D00000;
+    cursor: pointer;
 }

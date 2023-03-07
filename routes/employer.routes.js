@@ -9,4 +9,6 @@ router.get('/post-job',employerController.getPostJob);
 
 router.post('/post-job',employerController.postJob);
 
+router.post('/delete-job/:id',employerController.deleteJob);
+
 module.exports=router;

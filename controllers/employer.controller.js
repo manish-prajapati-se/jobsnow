@@ -8,8 +8,11 @@ const { ObjectId } = require('mongodb');
 
 
 
-function getDashboard(req,res){
-    res.render('employer/dashboard');
+async function getDashboard(req,res){
+    const employerId=new ObjectId(req.session.uid);
+    const listings=await Employer.getListings(employerId);
+    // console.log(listings);
+    res.render('employer/dashboard',{listings:listings});
 }
 
 function getPostJob(req,res){
@@ -54,9 +57,11 @@ function postJob(req,res){
     const newJob=new Job(jobData)
 
     newJob.save()
-        .then((doc)=>{
+        .then(async (doc)=>{
             console.log('new job saved to database');
-            console.log(doc);
+            
+            await Employer.addListing(doc);
+
             req.session.inputData=null;
             req.session.save(()=>{
                 res.redirect('/jobs');
@@ -89,8 +94,20 @@ function postJob(req,res){
         })
 }
 
+
+async function deleteJob(req,res){
+    const jobId=new ObjectId(req.params.id);
+    await Job.deleteOne({_id:jobId});
+    const employerId=new ObjectId(req.session.uid);
+    await Employer.deleteListing(employerId,jobId);
+
+    res.redirect('/employer/dashboard');
+}
+
+
 module.exports={
     getDashboard:getDashboard,
     getPostJob:getPostJob,
-    postJob:postJob
+    postJob:postJob,
+    deleteJob:deleteJob
 }

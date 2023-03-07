@@ -9,6 +9,7 @@ const authRoutes=require('./routes/auth.routes');
 const userRoutes=require('./routes/user.routes');
 const jobRoutes=require('./routes/job.routes');
 const employerRoutes=require('./routes/employer.routes');
+const assetsRoutes=require('./routes/assets.routes');
 
 const checkAuthStatusMiddleware=require('./middlewares/check-auth');
 const errorHandlerMiddleware=require('./middlewares/error-handler');
@@ -31,6 +32,7 @@ app.use(authRoutes);
 
 app.use(checkAuthStatusMiddleware);
 
+app.use('/assets',assetsRoutes);
 app.use(jobRoutes);
 app.use('/employer',protectRoutesMiddleware.employer,employerRoutes);
 
@@ -41,6 +43,8 @@ app.use(userRoutes);
 app.use((req,res)=>{
     res.render('shared/404');
 })
+
+app.use(errorHandlerMiddleware);
 
 db.connectToDatabase()
     .then(()=>{

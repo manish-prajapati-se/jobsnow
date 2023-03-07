@@ -1,0 +1,134 @@
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    max-width: 60rem;
+    margin: 5rem auto;
+    box-shadow: var(--container-box-shadow-1);
+    border-radius: var(--container-border-radius-1);
+}
+
+h2{
+    width: 80%;
+    margin: 1.5rem auto;
+    margin-bottom: 0rem;
+}
+
+#progress-container{
+    width:80%;
+    display: flex;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+#progress-percent{
+    text-align: center;
+    width: 15%;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+}
+
+#progress-bar{
+    width: 85%;
+    background-color: #ced4da;
+    border-radius: 2px;
+    height: 0.5rem;
+    margin: 0 auto;
+    
+}
+
+#progress{
+    color:white;
+    font-size: 0.7rem;
+    text-align: center;
+
+    padding: auto;
+    height: 0.5rem;
+    border-radius: 2px;
+    background: repeating-linear-gradient(
+    45deg,
+  #2196F3,
+  #1E88E5 10px,
+  #1976D2 10px,
+  #1565C0 20px
+);
+}
+
+.progress-67{
+    width: 67%;
+}
+
+div.progress-100{
+    width: 100%;
+}
+
+#illustration{
+    width: 50%;
+}
+
+#illustration img{
+    width: 100%;
+}
+
+.input-container{
+    margin: 1rem auto;
+}
+
+.button-container{
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.button-container button{
+    width: 80%;
+    padding: 0.5rem 1rem;
+}
+
+#information{
+    width: 50%;
+    padding: 2rem 4rem;
+}
+
+
+label{
+    display: block;
+    margin: auto;
+    width: 80%;
+    font-weight:500;
+}
+
+input{
+    display: block;
+    margin: auto;
+    width: 80%;
+    padding: 0.5rem;
+    border:none;
+    font-size: 1rem;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+input:focus{
+    outline:none;
+    border: 1px solid #1565C0;
+    border-radius: 3px;
+}
+
+#view-resume{
+    width: 80%;
+    margin:0 auto;
+}
+
+#view-resume p{
+    margin-top: 0.5rem;
+}
+
+a.resume{
+    color:#1565C0
+    
+}
+
+a.resume:hover{
+    color: #0D47A1;
+}

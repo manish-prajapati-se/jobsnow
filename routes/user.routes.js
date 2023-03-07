@@ -1,11 +1,11 @@
 const express=require('express');
 const router=express.Router();
+const userController=require('../controllers/user.controller');
+const resumeUploadMiddleware=require('../middlewares/resume-upload');
 
-router.get('/profile',function(req,res){
-    if(res.locals.uid){
-        res.render('user/profile');
-    }
-    else res.render('shared/401');
-})
+
+router.get('/profile',userController.getUser);
+
+router.post('/profile/:id',resumeUploadMiddleware,userController.updateUser);
 
 module.exports=router;

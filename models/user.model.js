@@ -6,6 +6,7 @@ class User{
         this.email=email;
         this.password=password;
         this.name=fullname;
+        this.resume='';
     }
 
     async signup(){
@@ -13,7 +14,8 @@ class User{
         await db.getDb().collection('users').insertOne({
             email:this.email.trim(),
             password:hashedPassword,
-            name:this.name.trim()
+            name:this.name.trim(),
+            resume:''
         });
         console.log('new user added');
     }
@@ -35,6 +37,21 @@ class User{
         return bcrypt.compare(this.password,hashedPasswordOfExistingUser);
 
     }
+
+    static async getUserById(userId){
+        const user=await db.getDb().collection('users').findOne({_id:userId});
+        return user;
+    }
+
+    static async updateUserById(userId,updatedUser){
+        await db.getDb().collection('users').updateOne({_id:userId},{
+            $set:{
+                name:updatedUser.name,
+                resume:updatedUser.resume
+            }
+        })
+    }
+    
 }
 
 module.exports=User;
