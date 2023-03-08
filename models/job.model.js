@@ -159,6 +159,15 @@ jobSchema.statics.fetchJobById=async function(jobId){
     return job;
 }
 
+jobSchema.statics.applyToJob=async function(jobId,userId){
+    try{
+        await this.findOneAndUpdate({_id:jobId},{$push:{applicants:userId}});
+    }catch(error){
+        console.log(error);
+    }
+
+}
+
 const Job=mongoose.model('jobs',jobSchema);
 
 module.exports=Job;

@@ -8,4 +8,6 @@ router.get('/jobs',jobsController.getAllJobs);
 
 router.get('/jobs/:id',jobsController.getJobDetails);
 
+router.post('/jobs/:id/apply',jobsController.applyToJob);
+
 module.exports=router;

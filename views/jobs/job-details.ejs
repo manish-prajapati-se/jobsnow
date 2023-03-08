@@ -14,7 +14,9 @@
                 <span><i class="fa-sharp fa-solid fa-location-dot"></i> <%=job.address%></span>
             </div>
             <div id="apply">
-                <button class="btn">Apply</button>
+                <form action="/jobs/<%=job._id%>/apply" method="POST">
+                    <button class="btn">Apply</button>
+                </form>
                 <span>
                     <%if(job.numberOfApplicants==0){%> 
                        No candidate

@@ -27,7 +27,12 @@ async function updateUser(req,res){
     res.redirect('/profile');
 }
 
+function getAppliedJobs(req,res){
+    res.render('user/applied-jobs');
+}
+
 module.exports={
     getUser:getUser,
-    updateUser:updateUser
+    updateUser:updateUser,
+    getAppliedJobs:getAppliedJobs
 }

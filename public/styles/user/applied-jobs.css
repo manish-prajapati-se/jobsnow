@@ -1,0 +1,88 @@
+main{
+    padding:2rem;
+    background-color: #ffffff;
+    max-width: 64rem;
+    margin: 5rem auto;
+    box-shadow: var(--container-box-shadow-1);
+    border-radius: var(--container-border-radius-1);
+}
+
+h2{
+    margin: 1rem 4rem;
+    text-align: center;
+}
+
+#applications{
+    margin: 2rem 2rem;
+}
+
+#applications .header{
+    font-weight: 500;
+}
+
+#applications p{
+    text-align: center;
+    padding:2rem;
+}
+
+.header td{
+    background-color: #f8f9fa;
+}
+
+td{
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
+
+.job-number{
+    min-width: 4rem;
+    
+}
+
+.job-title{
+    min-width: 16rem;
+   
+}
+
+.salary{
+    min-width: 10rem;
+}
+
+.applied-on{
+    min-width: 10rem;
+}
+
+.job-actions{
+    min-width: 16rem;
+    text-align: center;
+}
+
+#actions{
+    display: flex;
+    justify-content: center;
+}
+
+tr{
+    background-color: #f8f9fa;
+}
+
+tr:nth-of-type(odd){
+    background-color: #eff6fc;
+}
+
+.btn{
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+}
+
+
+.btn-red{
+    background-color: #DC2F02;
+    border: 1px solid #DC2F02;
+}
+
+.btn-red:hover{
+    background-color: #D00000;
+    border: 1px solid #D00000;
+}

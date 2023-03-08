@@ -3,6 +3,9 @@
     <nav>
         <ul class="nav-items">
             <%if(locals.uid){%>
+                <li class="nav-item"><a href="/applied-jobs">AppliedJobs</a></li>   
+            <%}%>
+            <%if(locals.uid){%>
                 <li class="nav-item"><a href="/employer/dashboard">Dashboard</a></li>   
             <%}%>
             <%if(locals.uid){%>
@@ -18,7 +21,7 @@
             <%if(locals.uid){%>
             <li class="nav-item">
                 <form action="/logout" method="POST">
-                    <button class="btn">Logout</button>
+                    <button class="btn" id="logout">Logout</button>
                 </form>
             </li>
             <%}%>

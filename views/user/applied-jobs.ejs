@@ -1,0 +1,48 @@
+<%-include('../shared/includes/head')%>
+<link rel="stylesheet" href="/styles/user/applied-jobs.css">
+<script src="https://kit.fontawesome.com/0ef15d1b1c.js" crossorigin="anonymous"></script>
+<body>
+    <%-include('../shared/includes/header')%>
+    <main>
+        <h2>Applied Jobs</h2>
+        <section id="applications">
+            <%if(false){%>
+                <p>Seems like you haven't applied to any job.</p>
+            <%}else{%>
+            <article class="header">
+                <table>
+                    <tr>
+                        <td class="job-number">Job#</td>
+                        <td class="job-title">Job Title</td>
+                        <td class="salary">Salary (USD)</td>
+                        <td class="applied-on">Date applied</td>
+                        <td class="job-actions">Actions</td>
+                    </tr>
+                </table>
+            </article>
+            <table class="job-applications">
+                <%for(let i=1;i<3;i++){%>
+                    <tr>
+                        <td class="job-number">1</td>
+                        <td class="job-title">Software Engineer </td>
+                        <td class="salary">500000</td>
+                        <td class="applied-on">15-12-2020</td>
+                        <td class="job-actions">
+                            <div id="actions">
+                                <a href="/jobs/">
+                                    <button class="btn">View</button>
+                                </a>
+                                <form id="delete-job">
+                                    <button class="btn btn-red">Withdraw</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <%}%>
+                
+            </table>
+            <%}%>
+        </section>
+    </main>
+</body>
+</html>

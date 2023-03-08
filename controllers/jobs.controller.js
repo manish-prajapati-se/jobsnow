@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const Job=require('../models/job.model');
 
 
@@ -20,8 +21,17 @@ async function getJobDetails(req,res){
 
 }
 
+async function applyToJob(req,res){
+    const jobId=new ObjectId(req.params.id);
+    const userId=new ObjectId(req.session.uid);
+
+    await Job.applyToJob(jobId,userId);
+    res.redirect(`/jobs/${req.params.id}`);
+}
+
 
 module.exports={
     getAllJobs:getAllJobs,
-    getJobDetails:getJobDetails
+    getJobDetails:getJobDetails,
+    applyToJob:applyToJob
 }

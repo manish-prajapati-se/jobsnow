@@ -8,4 +8,6 @@ router.get('/profile',userController.getUser);
 
 router.post('/profile/:id',resumeUploadMiddleware,userController.updateUser);
 
+router.get('/applied-jobs',userController.getAppliedJobs);
+
 module.exports=router;
