@@ -1,4 +1,5 @@
 const { ObjectId } = require('mongodb');
+const Job = require('../models/job.model');
 const User=require('../models/user.model');
 
 
@@ -27,8 +28,23 @@ async function updateUser(req,res){
     res.redirect('/profile');
 }
 
-function getAppliedJobs(req,res){
-    res.render('user/applied-jobs');
+async function getAppliedJobs(req,res){
+    const userId=new ObjectId(req.session.uid);
+
+    const appliedJobs=await User.getAppliedJobs(userId);
+    let appliedJobsWithDetails=[];
+    // console.log(appliedJobs);
+    for(const appliedJob of appliedJobs){
+        let job=await Job.fetchJobForAppliedJobsPage(appliedJob.jobId);
+
+        job={...job.toObject(),
+            dateApplied:appliedJob.applicationTime.toLocaleString('en-CA',{dateStyle:'medium'})};
+
+        // console.log(job);
+        appliedJobsWithDetails.push(job);
+    }
+    // console.log(appliedJobsWithDetails);
+    res.render('user/applied-jobs',{appliedJobs:appliedJobsWithDetails});
 }
 
 module.exports={

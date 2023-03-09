@@ -7,6 +7,7 @@ class User{
         this.password=password;
         this.name=fullname;
         this.resume='';
+        this.appliedJobs=[];
     }
 
     async signup(){
@@ -52,6 +53,50 @@ class User{
         })
     }
     
+    static async addAppliedJob(userId,jobId){
+        const user=await db.getDb().collection('users').findOne({_id:userId});
+
+        const alreadyAppliedJobs=user.appliedJobs;
+
+        if(alreadyAppliedJobs){
+            for(const alreadyAppliedJob of alreadyAppliedJobs){
+                if(alreadyAppliedJob.jobId.equals(jobId)){
+                    console.log('already applied');
+                    return; 
+                } 
+            }
+
+        }
+
+
+        let appliedJob={
+            jobId: jobId,
+            applicationTime: new Date()
+        }
+
+        await db.getDb().collection('users').updateOne({_id:userId},{$addToSet:{appliedJobs:appliedJob}});
+    }
+
+    static async removeAppliedJob(userId,jobId){
+        const user=await User.getUserById(userId);
+        let appliedJobToRemove;
+        for(const appliedJob of user.appliedJobs){
+            if(appliedJob.jobId.equals(jobId)){
+                appliedJobToRemove=appliedJob;
+                break;
+            }
+        }
+
+        // console.log(appliedJobToRemove);
+        if(!appliedJobToRemove) return;
+        console.log(appliedJobToRemove);
+        await db.getDb().collection('users').updateOne({_id:userId},{$pull: {appliedJobs:{jobId:appliedJobToRemove.jobId}}})
+    }
+
+    static async getAppliedJobs(userId){
+        const user=await this.getUserById(userId);
+        return user.appliedJobs;
+    }
 }
 
 module.exports=User;

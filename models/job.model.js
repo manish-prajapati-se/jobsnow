@@ -161,11 +161,23 @@ jobSchema.statics.fetchJobById=async function(jobId){
 
 jobSchema.statics.applyToJob=async function(jobId,userId){
     try{
-        await this.findOneAndUpdate({_id:jobId},{$push:{applicants:userId}});
+        await this.findOneAndUpdate({_id:jobId},{$addToSet:{applicants:userId}});
     }catch(error){
         console.log(error);
     }
+}
 
+jobSchema.statics.fetchJobForAppliedJobsPage=async function(jobId){
+    const job=await this.findOne({_id:jobId},{_id:1,jobTitle:1,companyName:1,salary:1});
+    return job;
+}
+
+jobSchema.statics.withdrawJob=async function(jobId,userId){
+    try{
+        await this.findOneAndUpdate({_id:jobId},{$pull:{applicants:userId}});
+    }catch(error){
+        console.log(error);
+    }
 }
 
 const Job=mongoose.model('jobs',jobSchema);

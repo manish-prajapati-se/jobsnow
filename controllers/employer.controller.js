@@ -105,9 +105,14 @@ async function deleteJob(req,res){
 }
 
 
+async function getCandidates(req,res){
+    res.render('employer/candidates');
+}
+
 module.exports={
     getDashboard:getDashboard,
     getPostJob:getPostJob,
     postJob:postJob,
-    deleteJob:deleteJob
+    deleteJob:deleteJob,
+    getCandidates:getCandidates
 }
