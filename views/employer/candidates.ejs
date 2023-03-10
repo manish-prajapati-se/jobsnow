@@ -1,1 +1,34 @@
-candidates
+<%-include('../shared/includes/head')%>
+<link rel="stylesheet" href="/styles/employer/candidates.css">
+<script src="https://kit.fontawesome.com/0ef15d1b1c.js" crossorigin="anonymous"></script>
+<body>
+    <%-include('../shared/includes/header')%>
+    <main>
+        <h2><%=candidates.length%> Candidates applied for the role of <%=role%></h2>
+        <section id="candidates">
+            <%if(false){%>
+                <p>No candidate to show</p>
+            <%}else{%>
+            <article class="header">
+                <table>
+                    <tr>
+                        <td class="candidate-name">Candidate Name</td>
+                        <td class="resume">Resume</td>
+                        <td class="time-of-application">Time of Application</td>
+                    </tr>
+                </table>
+            </article>
+            <table class="candidates">
+                <%for(const candidate of candidates){%>
+                    <tr>
+                        <td class="candidate-name"><%=candidate.name%></td>
+                        <td class="resume"><a href="/assets/resume/<%=candidate.resume%>" target="blank"><i class="fa-solid fa-download"></i> View resume</a></td>
+                        <td class="time-of-application"><%=candidate.applicationTime%></td>
+                    </tr>
+                <%}%>
+                
+            </table>
+            <%}%>
+        </section>
+    </main>
+</body>

@@ -13,11 +13,11 @@ async function getJobDetails(req,res){
     try{
         const job=await Job.fetchJobById(jobId)
         let hasApplied=false;
-
         if(req.session.uid){
             const userId=new ObjectId(req.session.uid)
-        // const jobId=new ObjectId(jobId);
+            // const jobId=new ObjectId(jobId);
             const user=await User.getUserById(userId);
+            
 
              for(const appliedJob of user.appliedJobs){
                 if(appliedJob.jobId.toString()==jobId){
@@ -27,7 +27,11 @@ async function getJobDetails(req,res){
 
         }
         // console.log(job);
-        res.render('jobs/job-details',{job:job,hasApplied:hasApplied});
+        let isProfileComplete=req.session.isProfileComplete;
+        res.render('jobs/job-details',{job:job,hasApplied:hasApplied,isProfileComplete:isProfileComplete});
+        
+        req.session.isProfileComplete=null;
+        req.session.save();
     }catch(error){
         console.log(error);
         res.render('shared/404');
@@ -39,10 +43,28 @@ async function applyToJob(req,res){
     const jobId=new ObjectId(req.params.id);
     const userId=new ObjectId(req.session.uid);
 
-    await Job.applyToJob(jobId,userId);
-    await User.addAppliedJob(userId,jobId);
-    
-    res.redirect(`/jobs/${req.params.id}`);
+    const job=await Job.fetchJobById(jobId)
+    const user=await User.getUserById(userId);
+
+
+    if(user.resume){
+
+        req.session.isProfileComplete=null;
+
+        await Job.applyToJob(jobId,userId);
+        await User.addAppliedJob(userId,jobId);
+        res.redirect(`/jobs/${req.params.id}`);
+
+    }else{
+
+        req.session.isProfileComplete=false;
+        req.session.save(()=>{
+
+            res.redirect(`/jobs/${req.params.id}`);
+        })
+        // res.render('jobs/job-details',{job:job,hasApplied:false,isProfileComplete:false});
+    }
+
 }
 
 async function withdrawJob(req,res){

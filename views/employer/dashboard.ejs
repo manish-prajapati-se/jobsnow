@@ -33,12 +33,14 @@
                                         <i class="fa-solid fa-eye fa-lg"></i>
                                     </div>
                                 </a>
-                                <div id="applicants">
-                                    <i class="fa-solid fa-users fa-lg"></i>
-                                </div>
-                                <div id="edit">
+                                <a href="candidates/<%=listing.jobId%>">
+                                    <div id="applicants">
+                                        <i class="fa-solid fa-users fa-lg"></i>
+                                    </div>
+                                </a>
+                                <!-- <div id="edit">
                                     <i class="fa-solid fa-pencil fa-lg"></i>
-                                </div>
+                                </div> -->
                                 <form id="delete-job" action="/employer/delete-job/<%=listing.jobId%>" method="POST">
                                     <div id="delete">
                                         <i class="fa-solid fa-trash-can fa-lg"></i>

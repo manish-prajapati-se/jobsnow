@@ -23,6 +23,9 @@
                                 Applied <i class="fa-sharp fa-solid fa-check"></i>
                             <%}%>
                         </button>
+                        <%if(isProfileComplete==false){%>
+                            <p class="error">Please complete your profile first</p>
+                        <%}%>
                     </form>
                 <%}else{%>
                     <a href="/login">
@@ -35,7 +38,7 @@
                     <%}else if(job.numberOfApplicants==1){%>
                         1 candidate
                     <%}else{%>
-                        <%=job.numberOfApplicants%> candidates
+                        <i class="fa-solid fa-user"></i> <%=job.numberOfApplicants%> candidates
                     <%}%>
                         applied to this job
                 </span>

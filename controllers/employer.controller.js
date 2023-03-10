@@ -1,11 +1,11 @@
 const Job=require('../models/job.model');
 const Employer=require('../models/employer.model');
+const User=require('../models/user.model');
 const educationMap=require('../data/mappings/education.json')
 const experienceMap=require('../data/mappings/experience.json');
 const industryMap=require('../data/mappings/industry.json');
 const jobTypeMap=require('../data/mappings/jobType.json');
 const { ObjectId } = require('mongodb');
-
 
 
 async function getDashboard(req,res){
@@ -100,13 +100,40 @@ async function deleteJob(req,res){
     await Job.deleteOne({_id:jobId});
     const employerId=new ObjectId(req.session.uid);
     await Employer.deleteListing(employerId,jobId);
+    await User.deleteAppliedJobForAllUsers(jobId);
 
     res.redirect('/employer/dashboard');
 }
 
 
 async function getCandidates(req,res){
-    res.render('employer/candidates');
+    const jobId=new ObjectId(req.params.id);
+    const jobTitle=await Job.getJobTitle(jobId);
+    //const candidates=await Employer.getCandidates(jobId);
+    const applicants=await Job.getCandidatesByJobId(jobId);
+    // console.log(applicants);
+    let candidates=[];
+    for(const applicant of applicants){
+        const user=await User.getUserDetailsForDashboard(applicant.userId);
+        // console.log(user);
+        let applicationTime;
+        if(user){
+            for(const appliedJob of user.appliedJobs){
+                if(appliedJob.jobId.equals(jobId)){
+                    applicationTime=appliedJob.applicationTime;
+                }
+            }
+        }
+
+        candidates.push({
+            name: user.name,
+            resume:applicant.resume,
+            applicationTime: applicationTime.toLocaleString('en-US')
+        })
+    }
+    // console.log(candidates)
+
+    res.render('employer/candidates',{role:jobTitle,candidates:candidates});
 }
 
 module.exports={

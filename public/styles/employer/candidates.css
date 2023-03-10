@@ -1,0 +1,57 @@
+main{
+    padding:2rem;
+    background-color: #ffffff;
+    max-width: 60rem;
+    margin: 5rem auto;
+    box-shadow: var(--container-box-shadow-1);
+    border-radius: var(--container-border-radius-1);
+}
+
+h2{
+    margin: 1rem 4rem;
+}
+
+#candidates{
+    margin: 2rem 4rem;
+}
+
+#candidates .header{
+    font-weight: 500;
+}
+
+#candidates p{
+    text-align: center;
+    padding:2rem;
+}
+
+.header td{
+    background-color: #f8f9fa;
+}
+
+td{
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
+
+
+.candidate-name{
+    min-width: 16rem;
+   
+}
+
+.resume{
+    min-width: 10rem;
+}
+
+.time-of-application{
+    min-width: 16rem;
+}
+
+tr{
+    background-color: #f8f9fa;
+}
+
+tr:nth-of-type(odd){
+    background-color: #eff6fc;
+}
+

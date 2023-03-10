@@ -30,7 +30,7 @@ main{
 
 #job-header div{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 #job-header span{
@@ -39,12 +39,18 @@ main{
 
 #apply{
     margin-top: 1rem;
+    justify-content: space-between;
+    align-items: start;
 }
+
 
 #apply span{
     margin-left: 1rem;
 }
 
+p.error{
+    color:#f2555f;
+}
 
 .summary-table{
     width: 50%;

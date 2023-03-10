@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Job=require('../models/job.model');
+const User=require('../models/user.model');
 
 const employerSchema=new mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
@@ -50,7 +51,17 @@ employerSchema.statics.getListings=async function(employerId){
     return jobListings;
 }
 
-
+// employerSchema.statics.getCandidates=async function(jobId){
+//     let candidateIds=await Job.getCandidatesByJobId(jobId);
+    
+//     let candidates=[];
+//     for(const candidateId of candidateIds){
+//         const user=await User.getUserById(candidateId);
+//         candidates.push
+//     }
+//     console.log(job);
+//     return job;
+// }
 
 const Employer=mongoose.model('employer',employerSchema);
 

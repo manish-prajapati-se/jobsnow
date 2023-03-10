@@ -4,6 +4,7 @@ const db=require('../data/database');
 const moment=require('moment');
 const sliceText=require('../utils/stringUtils');
 const { ObjectId } = require('mongodb');
+const User=require('../models/user.model');
 
 const jobSchema=new mongoose.Schema({
     jobTitle: {
@@ -161,7 +162,14 @@ jobSchema.statics.fetchJobById=async function(jobId){
 
 jobSchema.statics.applyToJob=async function(jobId,userId){
     try{
-        await this.findOneAndUpdate({_id:jobId},{$addToSet:{applicants:userId}});
+        const resume=await User.getResume(userId);
+        console.log(resume);
+        const applicant={
+            userId: userId,
+            resume: resume
+        }
+        console.log(applicant);
+        await this.findOneAndUpdate({_id:jobId},{$addToSet:{applicants:applicant}});
     }catch(error){
         console.log(error);
     }
@@ -174,7 +182,27 @@ jobSchema.statics.fetchJobForAppliedJobsPage=async function(jobId){
 
 jobSchema.statics.withdrawJob=async function(jobId,userId){
     try{
-        await this.findOneAndUpdate({_id:jobId},{$pull:{applicants:userId}});
+        await this.updateOne({_id:jobId},{$pull:{applicants:{userId: userId}}});
+    }catch(error){
+        console.log(error);
+    }
+}
+
+jobSchema.statics.getCandidatesByJobId=async function(jobId){
+    let job;
+    try{
+        job=await this.findOne({_id:jobId},{applicants:1});
+        return job.applicants;
+    }catch(error){
+        console.log(error);
+    }
+}
+
+jobSchema.statics.getJobTitle=async function(jobId){
+    let job;
+    try{
+        job=await this.findOne({_id:jobId},{jobTitle:1});
+        return job.jobTitle;
     }catch(error){
         console.log(error);
     }

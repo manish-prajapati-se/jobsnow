@@ -6,7 +6,7 @@
     <main>
         <h2>Applied Jobs</h2>
         <section id="applications">
-            <%if(!appliedJobs){%>
+            <%if(!appliedJobs || appliedJobs.length===0){%>
                 <p>Seems like you haven't applied to any job.</p>
             <%}else{%>
             <article class="header">

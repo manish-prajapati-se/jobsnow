@@ -16,7 +16,8 @@ class User{
             email:this.email.trim(),
             password:hashedPassword,
             name:this.name.trim(),
-            resume:''
+            resume:'',
+            appliedJobs:[]
         });
         console.log('new user added');
     }
@@ -96,6 +97,22 @@ class User{
     static async getAppliedJobs(userId){
         const user=await this.getUserById(userId);
         return user.appliedJobs;
+    }
+
+    static async getResume(userId){
+        const user=await db.getDb().collection('users').findOne({_id:userId},{resume:1});
+        let resume=user.resume;
+        return resume;
+    }
+
+    static async getUserDetailsForDashboard(userId){
+        let userDetails=await db.getDb().collection('users').findOne({_id:userId});
+        console.log(userDetails)
+        return userDetails;
+    }
+
+    static async deleteAppliedJobForAllUsers(jobId){
+        await db.getDb().collection('users').update({},{$pull:{appliedJobs:{jobId:jobId}}});
     }
 }
 
